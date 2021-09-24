@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Capsule Love Notes</title>
+    <link rel="stylesheet" href="style.css">    
+</head>
+<body>
+    <section id="writing-section">
+        <h1>Time Capsule Love Notes</h1>
+        <p class="instructions">Leave a note for yourself, and read it later</p>
+        <textarea name="love-note" id="love-note-textarea" rows="10"></textarea>
+        <button onclick="buryCapsule()" >Bury Time Capsule</button>
+    </section>
+
+    <section id="timer-section">
+        <h2>There's a note buried, you can read it in:</h2>
+        <p id="timer">777 minutes</p>
+    </section>
+    
+    <section id="love-note-section">
+        <h2>Hey,</h2>
+        <p id="love-note">I think you're beautiful.</p>
+        <button onclick="clearNote()" >Leave another note</button>
+    </section>
+
+    <script src="script.js"></script>
+    <script>
+        init();
+    </script>
+</body>
+</html>

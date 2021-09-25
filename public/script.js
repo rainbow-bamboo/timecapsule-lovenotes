@@ -10,18 +10,22 @@ function switchSection(id) {
 function buryCapsule() {
     console.log("capsule buried")
     const secondsSinceEpoch = Math.round(Date.now() / 1000)
+    const affirmation = document.getElementById("love-note-textarea").value
+    window.localStorage.setItem("affirmation", affirmation)
     window.localStorage.setItem("start-time", secondsSinceEpoch)
     init()
 }
 
 function clearNote() {
     window.localStorage.setItem("start-time", "null")
+    window.localStorage.setItem("affirmation", "")
+    document.getElementById("love-note-textarea").value = ""
     switchSection("writing-section")
 }
 
 function remainingTime() {
     let startingTime = parseInt(window.localStorage.getItem("start-time"))
-    let endTime = startingTime + (.5 * 60)
+    let endTime = startingTime + (777 * 60)
     let secondsSinceEpoch = Math.round(Date.now() / 1000)
     return Math.ceil((endTime - secondsSinceEpoch) / 60)
 }
@@ -30,8 +34,10 @@ function remainingTime() {
 function setTimer() {
     let timeLeft = remainingTime()
     if(Number.isInteger(timeLeft)){
-        document.getElementById("timer").innerHTML = String(timeLeft)
+        let minuteOrMinutes = (timeLeft == 1) ? " minute" : " minutes"
+        document.getElementById("timer").innerHTML = String(timeLeft).concat(minuteOrMinutes)
         if(timeLeft <= 0){
+            document.getElementById("love-note").innerHTML = window.localStorage.getItem("affirmation")
             switchSection("love-note-section");
         }
     } else{

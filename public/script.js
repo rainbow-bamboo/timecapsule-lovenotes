@@ -69,15 +69,28 @@ function getTimeCapsuleFromQueryParams() {
     const message = params.get("m")
     const time = params.get("t")
     const key = params.get("k")
-    return {"message" : message,
-            "startingTime": time,
-            "key" : key }
+    if (message){
+        return {"message" : message,
+        "startingTime": time,
+        "key" : key }
+    } else {
+        return null
+    }
+}
+
+function resetURL() {
+    const bareURL = location.protocol + '//' + location.host + location.pathname
+    window.location.href = bareURL;
 }
 
 function init() {
     let timeLeft = remainingTime()
     let affirmation = window.localStorage.getItem("affirmation");
+    let queryParams = getTimeCapsuleFromQueryParams();
     console.log(getTimeCapsuleFromQueryParams())
+    if(queryParams) {
+        resetURL()
+    }
 
     if (timeLeft > 0) {
         switchSection("timer-section")

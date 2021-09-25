@@ -8,7 +8,6 @@ function switchSection(id) {
 }
 
 function buryCapsule() {
-    console.log("capsule buried")
     const secondsSinceEpoch = Math.round(Date.now() / 1000)
     const affirmation = document.getElementById("love-note-textarea").value
     window.localStorage.setItem("affirmation", affirmation)
@@ -47,14 +46,42 @@ function setTimer() {
 
 setInterval(function() {setTimer()} , 500)
 
+
+function encryptTimeCapsule(message, startTime) {
+    const key = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 15);
+    const encryptedMessage = CryptoJS.AES.encrypt(message, key).toString()
+    const encryptedTime = CryptoJS.AES.encrypt(startTime, key).toString()
+
+    return encryptedMessage.concat("&t=").concat(encryptedTime).concat("&k=").concat(key)
+}
+
+function generateURL (){
+    const affirmation = window.localStorage.getItem("affirmation")
+    const startingTime = window.localStorage.getItem("start-time")
+    const encryptedTimeCapsule = encryptTimeCapsule(affirmation, startingTime)
+    return window.location.href.concat("?m=").concat(encryptedTimeCapsule)
+}
+
+console.log(generateURL())
+
+function getTimeCapsuleFromQueryParams() {
+    const params = new URLSearchParams(window.location.search)
+    const message = params.get("m")
+    const time = params.get("t")
+    const key = params.get("k")
+    return {"message" : message,
+            "startingTime": time,
+            "key" : key }
+}
+
 function init() {
     let timeLeft = remainingTime()
     let affirmation = window.localStorage.getItem("affirmation");
+    console.log(getTimeCapsuleFromQueryParams())
 
     if (timeLeft > 0) {
         switchSection("timer-section")
     } else {
-        console.log(affirmation)
         if(affirmation){
             switchSection("love-note-section")
         } else{
@@ -62,3 +89,11 @@ function init() {
         }
     }
 }
+
+// Encrypt
+var ciphertext = CryptoJS.AES.encrypt('my message', 'secret key 123');
+// console.log(ciphertext.toString())
+// Decrypt
+var bytes = CryptoJS.AES.decrypt(ciphertext.toString(), 'secret key 123');
+var plaintext = bytes.toString(CryptoJS.enc.Utf8);
+// console.log(plaintext)

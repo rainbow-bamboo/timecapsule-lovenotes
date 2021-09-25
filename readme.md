@@ -8,7 +8,9 @@
 There is a textarea for writing a note. When the "Bury Time Capsule" button is pressed, it saves the note and the current time to localstorage.
 
 Then the view is changed to a timer.
-On page load, if there is a note already stored, the view is changed to a timer with instructions for use. 
+On page load, if there is a note already stored, the view is changed to a timer with instructions for use.
+
+In the timer view, we can provide a copy link which will copy a link to the page with the affirmation, a key, and the start-time encoded. We need to make page-load check for these query params and store them in localstorage if present, then set the url to be timecapsule.red.
 
 After the timer is up, if enabled, show a notificiation.
 Either way, reveal the note.

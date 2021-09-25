@@ -49,10 +49,16 @@ setInterval(function() {setTimer()} , 500)
 
 function init() {
     let timeLeft = remainingTime()
+    let affirmation = window.localStorage.getItem("affirmation");
 
     if (timeLeft > 0) {
         switchSection("timer-section")
     } else {
-        switchSection("love-note-section")
+        console.log(affirmation)
+        if(affirmation){
+            switchSection("love-note-section")
+        } else{
+            switchSection("writing-section")
+        }
     }
 }

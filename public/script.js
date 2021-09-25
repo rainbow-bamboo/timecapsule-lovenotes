@@ -69,8 +69,6 @@ function copyURL() {
     return true
 }
 
-console.log(generateURL())
-
 function getTimeCapsuleFromQueryParams() {
     const params = new URLSearchParams(window.location.search)
     const message = params.get("m")
@@ -78,8 +76,8 @@ function getTimeCapsuleFromQueryParams() {
     const key = params.get("k")
     if (message){
         return {"message" : message,
-        "startingTime": time,
-        "key" : key }
+                "startingTime": time,
+                "key" : key }
     } else {
         return null
     }
@@ -90,12 +88,24 @@ function resetURL() {
     window.location.href = bareURL;
 }
 
+function decrypt(val,key) {
+    const bytes = CryptoJS.AES.decrypt(val.toString(), key);
+    return bytes.toString(CryptoJS.enc.Utf8);
+}
+
+function storeCapsule(queryParams){
+    const message = decrypt(queryParams.message, queryParams.key)
+    const startingTime = decrypt(queryParams.startingTime, queryParams.key)
+    window.localStorage.setItem("start-time", startingTime)
+    window.localStorage.setItem("affirmation", message)
+}
+
 function init() {
     let timeLeft = remainingTime()
     let affirmation = window.localStorage.getItem("affirmation");
     let queryParams = getTimeCapsuleFromQueryParams();
-    console.log(getTimeCapsuleFromQueryParams())
     if(queryParams) {
+        storeCapsule(getTimeCapsuleFromQueryParams())
         resetURL()
     }
 

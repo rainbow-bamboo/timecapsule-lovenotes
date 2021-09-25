@@ -62,6 +62,13 @@ function generateURL (){
     return window.location.href.concat("?m=").concat(encryptedTimeCapsule)
 }
 
+function copyURL() {
+    const encryptedURL = generateURL()
+    navigator.clipboard.writeText(encryptedURL);
+    alert("Copied to Clipboard, share it with someone special ✨")
+    return true
+}
+
 console.log(generateURL())
 
 function getTimeCapsuleFromQueryParams() {

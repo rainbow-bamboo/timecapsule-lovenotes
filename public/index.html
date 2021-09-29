@@ -8,23 +8,25 @@
     <link rel="stylesheet" href="style.css">    
 </head>
 <body>
+    <h1>Time Capsule Love Notes</h1>
     <section id="writing-section">
-        <h1>Time Capsule Love Notes</h1>
         <p class="instructions">Write down an affirmation ❤️</p>
         <textarea name="love-note" id="love-note-textarea" rows="10"></textarea>
-        <button onclick="buryCapsule()" >Bury Time Capsule</button>
+        <button onclick="buryCapsule('love-note-textarea')" >Bury Time Capsule</button>
     </section>
 
     <section id="timer-section">
         <h2>There's a note buried, you can read it in:</h2>
         <h3> <span id="timer"></span></h3>
         <button onclick="copyURL()">Copy Time Capsule</button>
+        <p class="instructions">Write down an affirmation ❤️</p>
+        <textarea name="love-note" id="timer-love-note-textarea" rows="10"></textarea>
+        <button onclick="buryCapsule('timer-love-note-textarea')" >Bury Time Capsule</button>
     </section>
     
     <section id="love-note-section">
-        <h2>Hey,</h2>
         <p id="love-note">I think you're beautiful.</p>
-        <button onclick="clearNote()" >Leave another note</button>
+        <button onclick="resetNote()">Leave another note</button>
     </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
     <script src="script.js"></script>

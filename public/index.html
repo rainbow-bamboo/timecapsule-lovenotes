@@ -12,15 +12,16 @@
     <section id="writing-section">
         <p class="instructions">Write down an affirmation ❤️</p>
         <textarea name="love-note" id="love-note-textarea" rows="10"></textarea>
+        <button onclick="copyURL('love-note-textarea')">Copy To Share</button>
         <button onclick="buryCapsule('love-note-textarea')" >Bury Time Capsule</button>
     </section>
 
     <section id="timer-section">
         <h2>There's a note buried, you can read it in:</h2>
         <h3> <span id="timer"></span></h3>
-        <button onclick="copyURL()">Copy Time Capsule</button>
         <p class="instructions">Write down an affirmation ❤️</p>
         <textarea name="love-note" id="timer-love-note-textarea" rows="10"></textarea>
+        <button onclick="copyURL('timer-love-note-textarea')">Copy To Share</button>
         <button onclick="buryCapsule('timer-love-note-textarea')" >Bury Time Capsule</button>
     </section>
     

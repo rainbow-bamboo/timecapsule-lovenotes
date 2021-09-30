@@ -1,4 +1,3 @@
-
 function switchSection(id) {
     let allSections = document.getElementsByTagName('section');
     for (var i = 0; i < allSections.length; i++) {
@@ -51,6 +50,7 @@ function setTimer() {
     }
 }
 
+// 
 setInterval(function() {setTimer()} , 500)
 
 
@@ -72,20 +72,19 @@ function dec(cipherText, key){
 function encryptTimeCapsule(message, startTime) {
     const key = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 15);
     const encryptedMessage = enc(message, key)
-    const encryptedTime = enc(startTime,key)
-
+    const encryptedTime = enc(startTime.toString(), key)
     return encryptedMessage.concat("&t=").concat(encryptedTime).concat("&k=").concat(key)
 }
 
-function generateURL (){
-    const affirmation = window.localStorage.getItem("affirmation")
-    const startingTime = window.localStorage.getItem("start-time")
+function generateURL (affirmation, startingTime){
     const encryptedTimeCapsule = encryptTimeCapsule(affirmation, startingTime)
     return window.location.href.concat("?m=").concat(encryptedTimeCapsule)
 }
 
-function copyURL() {
-    const encryptedURL = generateURL()
+function copyURL(id) {
+    const startingTime = Math.round(Date.now() / 1000)
+    const affirmation = document.getElementById(id).value
+    const encryptedURL = generateURL(affirmation, startingTime)
     navigator.clipboard.writeText(encryptedURL);
     alert("Copied to Clipboard, share it with someone special ✨")
     return true
@@ -117,8 +116,6 @@ function storeCapsule(queryParams){
 //    alert(queryParams.message)
 //    alert(queryParams.key)
 //    alert(queryParams.startingTime)
-    alert(m)
-    alert(startingTime)
     window.localStorage.setItem("start-time", startingTime)
     window.localStorage.setItem("affirmation", m)
 }
@@ -142,11 +139,3 @@ function init() {
         }
     }
 }
-
-// Encrypt
-var ciphertext = CryptoJS.AES.encrypt('my message', 'secret key 123');
-// console.log(ciphertext.toString())
-// Decrypt
-var bytes = CryptoJS.AES.decrypt(ciphertext.toString(), 'secret key 123');
-var plaintext = bytes.toString(CryptoJS.enc.Utf8);
-// console.log(plaintext)

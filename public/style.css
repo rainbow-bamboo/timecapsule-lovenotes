@@ -91,7 +91,7 @@ table {
 /* Love Capsule Styles */
 
 body{
-    background-color: #deedce;
+    background-color: #FFE7E5;
     padding: 1em;
     font-family: 'Crimson Pro';
 }
@@ -105,7 +105,7 @@ h1{
     font-family: 'Comfortaa';
     font-weight: 700;
     font-size: 4rem;
-    color: #B64074;
+    color: #EE6C4D;
 }
 
 h2{
@@ -153,6 +153,33 @@ textarea{
     display: inline-block;
     padding: 1em;
     background-color: whitesmoke;
+}
+
+#love-note-section{
+    display: flex;
+    align-items: center;
+}
+
+#capsule{
+    display: block;
+    cursor: pointer;
+    color: #293241;
+    font-family: 'Comfortaa';
+    font-weight: 700;
+    font-size: 2rem;
+    background-color: #EE6C4D;
+    display: inline-block;
+    padding: .75em;
+    border-radius: 2em;
+    margin-top: 1em;
+}
+
+#reset-button{
+    display: none;
+}
+
+#love-note{
+    display: none;
 }
 
 section{

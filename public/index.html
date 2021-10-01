@@ -15,19 +15,9 @@
         <h1>Time Capsule Love Notes</h1>
             <a id="rainbow" href="http://rainbowbamboo.org">🌈</a>
     </header>
-    <section id="writing-section">
-        <div class="new-capsule">
-            <textarea name="love-note" id="love-note-textarea" rows="10"></textarea>
-            <div class="capsule-controls">
-            <p class="instructions">Write a note for someone special ❤️</p>
-            <button class="copy-button" onclick="copyURL('love-note-textarea')">Copy To Share</button>
-            <button class="bury-button" onclick="buryCapsuleFromTextarea('love-note-textarea')">Bury Time Capsule</button>
-            </div>
-        </div>
-    </section>
 
     <section id="timer-section">
-        <h2>There's a note buried, you can read it in: <span id="timer"></span></h2>
+        <h2>There's a note buried, you can read it in: <span id="timer">💖</span></h2>
         <div class="new-capsule">
             <textarea name="love-note" id="timer-love-note-textarea" rows="10"></textarea>
             <div class="capsule-controls">
@@ -39,13 +29,20 @@
     </section>
     
     <section id="love-note-section">
-        <details>
-            <summary>Open Time Capsule</summary>
-            <p id="love-note">I think you're beautiful.</p>
-        </details>
-        
-        <button onclick="resetNote()">Leave another note</button>
+        <span id="capsule"
+              onclick="openCapsule()">Open Note</span>
+        <p id="love-note">I think you're beautiful.</p>        
     </section>
+    <footer id="writing-section">
+        <div class="new-capsule">
+            <textarea name="love-note" id="love-note-textarea" rows="10"></textarea>
+            <div class="capsule-controls">
+            <p class="instructions">Write a note for someone special ❤️</p>
+            <button class="copy-button" onclick="copyURL('love-note-textarea')">Copy To Share</button>
+            <button class="bury-button" onclick="buryCapsuleFromTextarea('love-note-textarea')">Bury Time Capsule</button>
+            </div>
+        </div>
+    </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
     <script src="script.js"></script>
     <script>

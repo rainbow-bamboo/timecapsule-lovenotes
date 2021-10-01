@@ -1,6 +1,6 @@
 function switchSection(id) {
     let allSections = document.getElementsByTagName('section');
-    for (var i = 0; i < allSections.length; i++) {
+    for (let i = 0; i < allSections.length; i++) {
         allSections[i].style.display = 'none';
     }
     document.getElementById(id).style.display = "block"
@@ -43,7 +43,7 @@ function buryCapsuleFromTextarea(id) {
 function remainingTime() {
     let startingTime = parseInt(window.localStorage.getItem("start-time"))
     if(startingTime){
-        let endTime = startingTime + (777 * 60)
+        let endTime = startingTime + (777 * .5)
         let secondsSinceEpoch = Math.round(Date.now() / 1000)
         return Math.ceil((endTime - secondsSinceEpoch) / 60)
     }
@@ -57,30 +57,26 @@ function setTimer() {
         let minuteOrMinutes = (timeLeft == 1) ? " minute" : " minutes"
         document.getElementById("timer").innerHTML = String(timeLeft).concat(minuteOrMinutes)
         if(timeLeft <= 0){
-            document.getElementById("love-note").innerHTML = window.localStorage.getItem("affirmation")
             switchSection("love-note-section");
         }
     } else{
-        document.getElementById("timer").innerHTML = ""
+        document.getElementById("timer").innerHTML = "🐯"
     }
 }
 
-// 
-setInterval(function() {setTimer()} , 500)
-
 
 function enc(plainText, key){
-    var b64 = CryptoJS.AES.encrypt(plainText, key).toString();
-    var e64 = CryptoJS.enc.Base64.parse(b64);
-    var eHex = e64.toString(CryptoJS.enc.Hex);
+    let b64 = CryptoJS.AES.encrypt(plainText, key).toString();
+    let e64 = CryptoJS.enc.Base64.parse(b64);
+    let eHex = e64.toString(CryptoJS.enc.Hex);
     return eHex;
 }
 
 function dec(cipherText, key){
-   var reb64 = CryptoJS.enc.Hex.parse(cipherText);
-   var bytes = reb64.toString(CryptoJS.enc.Base64);
-   var decrypt = CryptoJS.AES.decrypt(bytes, key);
-   var plain = decrypt.toString(CryptoJS.enc.Utf8);
+   let reb64 = CryptoJS.enc.Hex.parse(cipherText);
+   let bytes = reb64.toString(CryptoJS.enc.Base64);
+   let decrypt = CryptoJS.AES.decrypt(bytes, key);
+   let plain = decrypt.toString(CryptoJS.enc.Utf8);
    return plain;
 }
 
@@ -127,6 +123,12 @@ function storeCapsule(queryParams){
     buryCapsule(m)
 }
 
+function openCapsule(){
+    document.getElementById("capsule").innerHTML = window.localStorage.getItem("affirmation")
+    // document.getElementById("open-capsule").style.display = "none"
+    // document.getElementById("love-note").style.display = "block"
+}
+
 function init() {
     let timeLeft = remainingTime()
     let affirmation = window.localStorage.getItem("affirmation");
@@ -146,3 +148,7 @@ function init() {
         }
     }
 }
+
+// This command sets 
+// 
+setInterval(function() {setTimer()} , 500)

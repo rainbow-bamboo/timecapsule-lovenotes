@@ -51,7 +51,7 @@ function remainingTime() {
 }
 
 // this function also manipulates the state
-function setTimer() {
+function setCapsuleTimer() {
     let timeLeft = remainingTime()
     if(Number.isInteger(timeLeft)){
         let minuteOrMinutes = (timeLeft == 1) ? " minute" : " minutes"
@@ -149,6 +149,6 @@ function init() {
     }
 }
 
-// This command sets 
-// 
-setInterval(function() {setTimer()} , 500)
+// This command checks the remaining time on the capsule once a second 
+// and updates the #timer span with the new duration in minutes
+setInterval(function() {setCapsuleTimer()} , 1000)

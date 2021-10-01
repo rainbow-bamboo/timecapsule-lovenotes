@@ -18,7 +18,7 @@ function resetNote(){
 
 function buryCapsule(message){
     const secondsSinceEpoch = Math.round(Date.now() / 1000)
-    const storedMessage = window.localStorage.getItem("affirmation").toString()
+    const storedMessage = window.localStorage.getItem("affirmation")
     if(storedMessage != null){
         let confirmed = window.confirm("Would you like to replace the currently buried capsule?")
         if(confirmed == true){
@@ -43,7 +43,7 @@ function buryCapsuleFromTextarea(id) {
 function remainingTime() {
     let startingTime = parseInt(window.localStorage.getItem("start-time"))
     if(startingTime){
-        let endTime = startingTime + (777 * .5)
+        let endTime = startingTime + (777 * 60)
         let secondsSinceEpoch = Math.round(Date.now() / 1000)
         return Math.ceil((endTime - secondsSinceEpoch) / 60)
     }

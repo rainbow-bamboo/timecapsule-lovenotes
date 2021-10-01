@@ -49,6 +49,11 @@ table {
 
 /* Rainbow Styles */
 #rainbow {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: .5em;
+    border-radius: 100px;
     background: linear-gradient(230deg, #ffbfc5, #ffffff, #a8d1e7);
     background-size: 600% 600%;
     -webkit-animation: AnimationName 15s ease infinite;
@@ -56,6 +61,12 @@ table {
     animation: AnimationName 15s ease infinite;
     border:10px solid #deedce;
 }
+
+@media only screen and (max-width: 600px) {
+    #rainbow{
+        padding: 5px;
+    }
+  }
 
 #rainbow:hover{    
     border:10px solid #B3DBD8;
@@ -82,6 +93,7 @@ table {
 body{
     background-color: #deedce;
     padding: 1em;
+    font-family: 'Crimson Pro';
 }
 
 header{
@@ -92,16 +104,54 @@ header{
 h1{
     font-family: 'Comfortaa';
     font-weight: 700;
-    font-size: 3rem;
+    font-size: 4rem;
     color: #B64074;
 }
 
-#rainbow{
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    padding: .5em;
-    border-radius: 100px;
+h2{
+    font-size: 2rem;
+}
+
+textarea{
+    width: 30em;
+    margin: 1em;
+}
+
+.new-capsule{    
+    margin-left: -1em;
+    padding-top: 1em;
+    display: flex;
+    align-items: center;
+}
+
+.capsule-controls button{
+    margin-top: 1em;
+    margin-right: 1em;
+}
+
+.copy-button{
+    background-color: yellow;
+}
+
+.bury-button{
+    background-color: rgb(156, 108, 108);
+    color: white;
+}
+
+.instructions{
+    font-size: 1.5rem;
+}
+
+#timer{
+    font-size: 2rem;
+    text-decoration: underline;
+    text-decoration-color: #B64074;
+}
+
+#timer-section h2{
+    display: inline-block;
+    padding: 1em;
+    background-color: whitesmoke;
 }
 
 section{

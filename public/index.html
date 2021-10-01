@@ -7,7 +7,7 @@
     <title>Time Capsule Love Notes</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Crimson+Pro&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">    
 </head>
 <body>
@@ -16,23 +16,34 @@
             <a id="rainbow" href="http://rainbowbamboo.org">🌈</a>
     </header>
     <section id="writing-section">
-        <p class="instructions">Write down an affirmation ❤️</p>
-        <textarea name="love-note" id="love-note-textarea" rows="10"></textarea>
-        <button onclick="copyURL('love-note-textarea')">Copy To Share</button>
-        <button onclick="buryCapsule('love-note-textarea')" >Bury Time Capsule</button>
+        <div class="new-capsule">
+            <textarea name="love-note" id="love-note-textarea" rows="10"></textarea>
+            <div class="capsule-controls">
+            <p class="instructions">Write a note for someone special ❤️</p>
+            <button class="copy-button" onclick="copyURL('love-note-textarea')">Copy To Share</button>
+            <button class="bury-button" onclick="buryCapsule('love-note-textarea')">Bury Time Capsule</button>
+            </div>
+        </div>
     </section>
 
     <section id="timer-section">
-        <h2>There's a note buried, you can read it in:</h2>
-        <h3> <span id="timer"></span></h3>
-        <p class="instructions">Write down an affirmation ❤️</p>
-        <textarea name="love-note" id="timer-love-note-textarea" rows="10"></textarea>
-        <button onclick="copyURL('timer-love-note-textarea')">Copy To Share</button>
-        <button onclick="buryCapsule('timer-love-note-textarea')" >Bury Time Capsule</button>
+        <h2>There's a note buried, you can read it in: <span id="timer"></span></h2>
+        <div class="new-capsule">
+            <textarea name="love-note" id="timer-love-note-textarea" rows="10"></textarea>
+            <div class="capsule-controls">
+            <p class="instructions">Write a note for someone special ❤️</p>
+            <button class="copy-button" onclick="copyURL('timer-love-note-textarea')">Copy To Share</button>
+            <button class="bury-button" onclick="buryCapsule('timer-love-note-textarea')">Bury Time Capsule</button>
+            </div>
+        </div>
     </section>
     
     <section id="love-note-section">
-        <p id="love-note">I think you're beautiful.</p>
+        <details>
+            <summary>Open Time Capsule</summary>
+            <p id="love-note">I think you're beautiful.</p>
+        </details>
+        
         <button onclick="resetNote()">Leave another note</button>
     </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>

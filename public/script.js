@@ -151,4 +151,5 @@ function init() {
 
 // This command checks the remaining time on the capsule once a second 
 // and updates the #timer span with the new duration in minutes
+// if there's no time left, switch to the love-note section
 setInterval(function() {setCapsuleTimer()} , 1000)

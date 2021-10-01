@@ -127,14 +127,15 @@ textarea{
 .capsule-controls button{
     margin-top: 1em;
     margin-right: 1em;
+    cursor: pointer;
 }
 
 .copy-button{
-    background-color: yellow;
+    background-color: #FFE494;
 }
 
 .bury-button{
-    background-color: rgb(156, 108, 108);
+    background-color: #83739E;
     color: white;
 }
 

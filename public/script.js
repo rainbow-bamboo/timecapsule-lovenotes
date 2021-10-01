@@ -16,14 +16,29 @@ function resetNote(){
     switchSection("writing-section")
 }
 
-function buryCapsule(id) {
+function buryCapsule(message){
     const secondsSinceEpoch = Math.round(Date.now() / 1000)
-    const affirmation = document.getElementById(id).value
-    window.localStorage.setItem("affirmation", affirmation)
-    window.localStorage.setItem("start-time", secondsSinceEpoch)
-    clearNote(id)
-    init()
+    const storedMessage = window.localStorage.getItem("affirmation").toString()
+    if(storedMessage != null){
+        let confirmed = window.confirm("Would you like to replace the currently buried capsule?")
+        if(confirmed == true){
+            window.localStorage.setItem("affirmation", message)
+            window.localStorage.setItem("start-time", secondsSinceEpoch)
+            resetURL()
+        }
+    }else{
+        window.localStorage.setItem("affirmation", message)
+        window.localStorage.setItem("start-time", secondsSinceEpoch)
+        init()
+    }
 }
+
+function buryCapsuleFromTextarea(id) {
+    const message = document.getElementById(id).value
+    clearNote(id)
+    buryCapsule(message)
+}
+
 
 function remainingTime() {
     let startingTime = parseInt(window.localStorage.getItem("start-time"))
@@ -69,15 +84,14 @@ function dec(cipherText, key){
    return plain;
 }
 
-function encryptTimeCapsule(message, startTime) {
+function encryptTimeCapsule(message) {
     const key = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 15);
     const encryptedMessage = enc(message, key)
-    const encryptedTime = enc(startTime.toString(), key)
-    return encryptedMessage.concat("&t=").concat(encryptedTime).concat("&k=").concat(key)
+    return encryptedMessage.concat("&k=").concat(key)
 }
 
-function generateURL (affirmation, startingTime){
-    const encryptedTimeCapsule = encryptTimeCapsule(affirmation, startingTime)
+function generateURL (affirmation){
+    const encryptedTimeCapsule = encryptTimeCapsule(affirmation)
     return window.location.href.concat("?m=").concat(encryptedTimeCapsule)
 }
 
@@ -93,11 +107,9 @@ function copyURL(id) {
 function getTimeCapsuleFromQueryParams() {
     const params = new URLSearchParams(window.location.search)
     let message = params.get("m")
-    let t = params.get("t")
     let key = params.get("k")
-    if (message && t && key){
+    if (message && key){
         return {"message" : message,
-                "startingTime": t,
                 "key" : key }
     } else {
         return null
@@ -112,12 +124,7 @@ function resetURL() {
 
 function storeCapsule(queryParams){
     let m = dec(queryParams.message, queryParams.key)
-    let startingTime = dec(queryParams.startingTime, queryParams.key)
-//    alert(queryParams.message)
-//    alert(queryParams.key)
-//    alert(queryParams.startingTime)
-    window.localStorage.setItem("start-time", startingTime)
-    window.localStorage.setItem("affirmation", m)
+    buryCapsule(m)
 }
 
 function init() {

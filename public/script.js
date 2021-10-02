@@ -91,11 +91,22 @@ function generateURL (affirmation){
     return window.location.href.concat("?m=").concat(encryptedTimeCapsule)
 }
 
+// Deprecated, but it works on mobile
+function copyToClipboard(text) {
+    const elem = document.createElement('textarea');
+    elem.value = text;
+    document.body.appendChild(elem);
+    elem.select();
+    document.execCommand('copy');
+    document.body.removeChild(elem);
+ }
+
 function copyURL(id) {
     const startingTime = Math.round(Date.now() / 1000)
     const affirmation = document.getElementById(id).value
     const encryptedURL = generateURL(affirmation, startingTime)
-    navigator.clipboard.writeText(encryptedURL);
+    copyToClipboard(encryptedURL)
+//    navigator.clipboard.writeText(encryptedURL);
     alert("Copied to Clipboard, share it with someone special ✨")
     return true
 }

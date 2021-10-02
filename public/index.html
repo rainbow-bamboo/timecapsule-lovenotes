@@ -30,8 +30,9 @@
             <textarea name="love-note" id="love-note-textarea" rows="10"></textarea>
             <div class="capsule-controls">
             <p class="instructions">Write a note for someone special ❤️</p>
-            <button class="copy-button" onclick="copyURL('love-note-textarea')">Copy To Share</button>
+            <button class="copy-button" onclick="copyURL('love-note-textarea', 'share-url')">Copy To Share</button>
             <button class="bury-button" onclick="buryCapsuleFromTextarea('love-note-textarea')">Bury Time Capsule</button>
+            <input id="share-url"></input>
             </div>
         </div>
     </footer>

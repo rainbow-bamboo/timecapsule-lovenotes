@@ -92,24 +92,26 @@ function generateURL (affirmation){
 }
 
 // Deprecated, but it works on mobile
-function copyToClipboard(text) {
-    const elem = document.createElement('textarea');
-    elem.value = text;
-    document.body.appendChild(elem);
-    elem.select();
-    document.execCommand('copy');
-    document.body.removeChild(elem);
- }
+ function copy(id) {
+    var copyText = document.getElementById(id);
+    copyText.style.visibility = "visible"
+    copyText.select();
+    document.execCommand("copy");
+  }
 
-function copyURL(id) {
+
+function copyURL(affirmID, urlID) {
     const startingTime = Math.round(Date.now() / 1000)
-    const affirmation = document.getElementById(id).value
+    const affirmation = document.getElementById(affirmID).value
     const encryptedURL = generateURL(affirmation, startingTime)
-    copyToClipboard(encryptedURL)
+    document.getElementById(urlID).value = encryptedURL
+    copy(urlID)
 //    navigator.clipboard.writeText(encryptedURL);
     alert("Copied to Clipboard, share it with someone special ✨")
     return true
 }
+
+  
 
 function getTimeCapsuleFromQueryParams() {
     const params = new URLSearchParams(window.location.search)

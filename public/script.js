@@ -107,7 +107,7 @@ function copyURL(affirmID, urlID) {
     document.getElementById(urlID).value = encryptedURL
     copy(urlID)
 //    navigator.clipboard.writeText(encryptedURL);
-    alert("Copied to Clipboard, share it with someone special ✨")
+    alert("Copied Capsule to Clipboard ✨")
     return true
 }
 
